@@ -1,0 +1,1101 @@
+<application lastUser="管理员" lastDate="2016-11-29 10:30:05">
+  <forms>
+    <form id="form1" includedId="ZWCL_YMCL_CHECK" name="关闭会计期间检查" formType="null" icon="">
+      <C id="form1" clazz="com.efounder.form.application::FormViewContainer">
+        <P name="id" type="String">form1</P>
+        <P name="x" type="Number">0</P>
+        <P name="y" type="Number">0</P>
+        <P name="width" type="Number">850</P>
+        <P name="height" type="Number">529</P>
+        <P name="percentHeight" type="Number">100</P>
+        <P name="visible" type="Boolean">true</P>
+        <P name="tabIndex" type="int">-1</P>
+        <P name="maxCompIDs" type="String"></P>
+        <P name="gap" type="int">0</P>
+        <P name="paddingLeft" type="Number">0</P>
+        <P name="paddingRight" type="Number">0</P>
+        <P name="paddingTop" type="Number">0</P>
+        <P name="paddingBottom" type="Number">0</P>
+        <P name="layoutType" type="String">vertical</P>
+        <P name="horizontalAlign" type="String">left</P>
+        <P name="verticalAlign" type="String">top</P>
+        <P name="okServiceKey" type="String"></P>
+        <P name="scriptObject" type="Object" clazz="Object">
+          <k name="afterClosed_js" type="String"><![CDATA[TimerComponent.stop();]]></k>
+          <k name="formContainerCreated_js" type="String"><![CDATA[var gnlx = MC.getValue("GNLX", "");
+//月末关账检查
+if ("YMJC" == gnlx) {
+	//设置显示的检查内容
+	var checknr = " 关闭会计期间的前提：\r\n    时间已到会计期间结束日期；备查簿单据已生成凭证；";
+	checknr += " \r\n    坏账计提已完成且已生成凭证；递延所得税已完成且已生成凭证；\r\n    凭证折算功能已完成；月末结平科目已经结平；";
+	checknr += " \r\n    凭证全部审核且凭证类型已完成、封存；\r\n    月末数据已签认且已生成凭证；";
+	checkNRArea.setValue(checknr);
+	//
+	//kjndLabel.setVisible(false);kjndField.setVisible(false);
+	closeQJButton.setVisible(false);closeNDButton.setVisible(false);
+	jzqlCheck.setVisible(false);tbyeButton.setVisible(false);qynndButton.setVisible(false);
+	jzqlButton.setVisible(false);
+}
+
+//关闭会计期间
+if ("QJGB" == gnlx) {
+	//设置显示的检查内容
+	var checknr = " 提示：\r\n    关闭会计期间、年结前请做好备份！";
+	checknr += "\r\n    此功能将对所有系统关闭期间或年结！";
+	checknr += "\r\n    年结之前请先通知其他用户退出相关系统，然后再进行年结！";
+	checknr += "\r\n 关闭会计期间的前提：\r\n    时间已到会计期间结束日期；备查簿单据已生成凭证；";
+	checknr += " \r\n    坏账计提已完成且已生成凭证；递延所得税已完成且已生成凭证；\r\n    凭证折算功能已完成；月末结平科目已经结平；";
+	checknr += " \r\n    凭证全部审核且凭证类型已完成、封存；\r\n    月末数据已签认且已生成凭证；";
+	checknr += "\r\n 年结的前提：";
+	checknr += "\r\n    已启用新年度帐；";
+	checknr += "\r\n    已关闭所有会计期间。";
+	checkNRArea.setValue(checknr);
+	// 
+	codeLabel.setVisible(false);codeField.setVisible(false);
+	//kjndLabel.setVisible(false);kjndField.setVisible(false);
+	checkButton.setVisible(false);jzqlButton.setVisible(false);
+	jzqlCheck.setVisible(false);tbyeButton.setVisible(false);qynndButton.setVisible(false);
+}
+
+//科目设置检查
+if ("KMSZJC" == gnlx) {
+	//设置显示的检查内容
+	var checknr = " 提示：\r\n";
+	checknr += "\r\n    检查明细核算主体新旧年度科目设置变动情况！";
+	checknr += "\r\n    转出日志，配置ACHSBD表，以便准确同步余额！";
+	checkNRArea.setValue(checknr);
+	// 
+	codeLabel.setVisible(false);codeField.setVisible(false);monthField.setVisible(false);
+	kjqjLabel.setVisible(false);yearLabel.setVisible(false);monthLabel.setVisible(false);
+	closeQJButton.setVisible(false);closeNDButton.setVisible(false);
+	jzqlCheck.setVisible(false);tbyeButton.setVisible(false);qynndButton.setVisible(false);
+	jzqlButton.setVisible(false);
+}
+
+//启用新年度
+if ("QYXND" == gnlx) {
+	//设置显示的检查内容
+	var checknr = " 启用新年度帐后，将生成会计期间并可进行新年度的各项业务处理\r\n";
+	checknr += "\r\n同步余额将用当前会计年度的余额更新新年度的余额！";
+	checkNRArea.setValue(checknr);
+	// 
+	//codeLabel.setVisible(false);codeField.setVisible(false);
+	monthField.setVisible(false);
+	kjqjLabel.setVisible(false);yearLabel.setVisible(false);monthLabel.setVisible(false);
+	exportButton.setVisible(false);checkButton.setVisible(false);
+	closeQJButton.setVisible(false);closeNDButton.setVisible(false);
+	jzqlButton.setVisible(false);
+}
+//年末结转清零
+if ("JZQL" == gnlx) {
+	//设置显示的检查内容
+	var checknr = " 注意：会计年度请选择当前年度\r\n";
+	checknr += "\r\n年末清零结转前请检查次年上年结转余额是否正确！";
+	checkNRArea.setValue(checknr);
+	// 
+	codeLabel.setVisible(false);codeField.setVisible(false);monthField.setVisible(false);
+	kjqjLabel.setVisible(false);yearLabel.setVisible(false);monthLabel.setVisible(false);
+	exportButton.setVisible(false);checkButton.setVisible(false);
+	closeQJButton.setVisible(false);closeNDButton.setVisible(false);
+	jzqlCheck.setVisible(false);tbyeButton.setVisible(false);qynndButton.setVisible(false);
+}]]></k>
+        </P>
+        <C id="BackgroundContainer1455694139873" clazz="com.efounder.containers::BackgroundContainer">
+          <P name="id" type="String">BackgroundContainer1455694139873</P>
+          <P name="x" type="Number">0</P>
+          <P name="y" type="Number">0</P>
+          <P name="width" type="Number">850</P>
+          <P name="height" type="Number">529</P>
+          <P name="percentWidth" type="Number">100</P>
+          <P name="percentHeight" type="Number">100</P>
+          <P name="visible" type="Boolean">true</P>
+          <P name="tabIndex" type="int">-1</P>
+          <P name="gap" type="int">5</P>
+          <P name="paddingLeft" type="Number">5</P>
+          <P name="paddingRight" type="Number">5</P>
+          <P name="paddingTop" type="Number">10</P>
+          <P name="paddingBottom" type="Number">10</P>
+          <P name="layoutType" type="String">vertical</P>
+          <P name="horizontalAlign" type="String">left</P>
+          <P name="verticalAlign" type="String">top</P>
+          <P name="borderColor" type="uint">12040892</P>
+          <P name="borderWeight" type="Number">1</P>
+          <P name="borderAlpha" type="Number">1</P>
+          <P name="cornerRadius" type="Number">1</P>
+          <P name="borderVisible" type="Boolean">true</P>
+          <P name="showTopBorder" type="Boolean">true</P>
+          <P name="showBottomBorder" type="Boolean">true</P>
+          <P name="showLeftBorder" type="Boolean">true</P>
+          <P name="showRightBorder" type="Boolean">true</P>
+          <P name="showAsHand" type="Boolean">false</P>
+          <P name="showShadow" type="Boolean">false</P>
+          <P name="shadowRadius" type="int">3</P>
+          <P name="shadowColor" type="uint">13421772</P>
+          <P name="borderStyle" type="String">SOLID</P>
+          <P name="backgroundColor" type="uint">16777215</P>
+          <P name="backgroundImageURL" type="String"></P>
+          <P name="backgroundImageFillMode" type="String">scale</P>
+          <P name="backgroundImagePosition" type="String"></P>
+          <C id="BackgroundContainer1455694171434" clazz="com.efounder.containers::BackgroundContainer">
+            <P name="id" type="String">BackgroundContainer1455694171434</P>
+            <P name="x" type="Number">5</P>
+            <P name="y" type="Number">10</P>
+            <P name="width" type="Number">100</P>
+            <P name="height" type="Number">30</P>
+            <P name="percentWidth" type="Number">100</P>
+            <P name="percentHeight" type="Number">0</P>
+            <P name="visible" type="Boolean">true</P>
+            <P name="tabIndex" type="int">-1</P>
+            <P name="gap" type="int">5</P>
+            <P name="paddingLeft" type="Number">0</P>
+            <P name="paddingRight" type="Number">0</P>
+            <P name="paddingTop" type="Number">0</P>
+            <P name="paddingBottom" type="Number">0</P>
+            <P name="layoutType" type="String">horizontal</P>
+            <P name="horizontalAlign" type="String">left</P>
+            <P name="verticalAlign" type="String">middle</P>
+            <P name="borderColor" type="uint">12040892</P>
+            <P name="borderWeight" type="Number">1</P>
+            <P name="borderAlpha" type="Number">1</P>
+            <P name="cornerRadius" type="Number">1</P>
+            <P name="borderVisible" type="Boolean">true</P>
+            <P name="showTopBorder" type="Boolean">true</P>
+            <P name="showBottomBorder" type="Boolean">true</P>
+            <P name="showLeftBorder" type="Boolean">true</P>
+            <P name="showRightBorder" type="Boolean">true</P>
+            <P name="showAsHand" type="Boolean">false</P>
+            <P name="showShadow" type="Boolean">false</P>
+            <P name="shadowRadius" type="int">3</P>
+            <P name="shadowColor" type="uint">13421772</P>
+            <P name="borderStyle" type="String">SOLID</P>
+            <P name="backgroundColor" type="uint">16777215</P>
+            <P name="backgroundImageURL" type="String"></P>
+            <P name="backgroundImageFillMode" type="String">scale</P>
+            <P name="backgroundImagePosition" type="String"></P>
+            <C id="kjqjLabel" clazz="com.efounder.controls::FormLabel">
+              <P name="id" type="String">kjqjLabel</P>
+              <P name="x" type="Number">0</P>
+              <P name="y" type="Number">2</P>
+              <P name="width" type="Number">80</P>
+              <P name="height" type="Number">25</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="borderVisible" type="Boolean">false</P>
+              <P name="borderStyle" type="String">bottom</P>
+              <P name="borderWidth" type="Number">1</P>
+              <P name="borderColor" type="uint">0</P>
+              <P name="borderAlpha" type="Number">1</P>
+              <P name="isUserInternalDataSetID" type="Boolean">false</P>
+              <P name="originalText" type="String">会计期间：</P>
+              <P name="showAsHand" type="Boolean">false</P>
+              <P name="useDefinedStyle" type="Boolean">true</P>
+              <P name="fontFamily" type="String">Arial</P>
+              <P name="fontSize" type="String">14</P>
+              <P name="color" type="uint">0</P>
+              <P name="fontWeight" type="String">bold</P>
+              <P name="fontStyle" type="String">normal</P>
+              <P name="textDecoration" type="String">none</P>
+              <P name="textAlign" type="String">center</P>
+              <P name="verticalAlign" type="String">middle</P>
+            </C>
+            <C id="kjndLabel" clazz="com.efounder.controls::FormLabel">
+              <P name="id" type="String">kjndLabel</P>
+              <P name="x" type="Number">85</P>
+              <P name="y" type="Number">2</P>
+              <P name="width" type="Number">80</P>
+              <P name="height" type="Number">25</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="borderVisible" type="Boolean">false</P>
+              <P name="borderStyle" type="String">bottom</P>
+              <P name="borderWidth" type="Number">1</P>
+              <P name="borderColor" type="uint">0</P>
+              <P name="borderAlpha" type="Number">1</P>
+              <P name="isUserInternalDataSetID" type="Boolean">false</P>
+              <P name="originalText" type="String">当前年度：</P>
+              <P name="showAsHand" type="Boolean">false</P>
+              <P name="useDefinedStyle" type="Boolean">true</P>
+              <P name="fontFamily" type="String">Arial</P>
+              <P name="fontSize" type="String">14</P>
+              <P name="color" type="uint">0</P>
+              <P name="fontWeight" type="String">bold</P>
+              <P name="fontStyle" type="String">normal</P>
+              <P name="textDecoration" type="String">none</P>
+              <P name="textAlign" type="String">center</P>
+              <P name="verticalAlign" type="String">middle</P>
+            </C>
+            <C id="kjndField" clazz="com.efounder.controls::FormYearComboBox">
+              <P name="id" type="String">kjndField</P>
+              <P name="x" type="Number">170</P>
+              <P name="y" type="Number">2</P>
+              <P name="width" type="Number">80</P>
+              <P name="height" type="Number">25</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="startYear" type="String">2007</P>
+              <P name="endYear" type="String">0</P>
+              <P name="isUserInternalDataSetID" type="Boolean">false</P>
+              <P name="canEdit" type="Boolean">true</P>
+              <P name="canInput" type="Boolean">false</P>
+              <P name="useDefinedStyle" type="Boolean">false</P>
+              <P name="fontFamily" type="String">Arial</P>
+              <P name="fontSize" type="int">12</P>
+              <P name="fontColor" type="uint">0</P>
+              <P name="borderColor" type="uint">10602458</P>
+              <P name="backgroundColor" type="uint">16777215</P>
+              <P name="arrowColor" type="uint">0</P>
+              <P name="scriptObject" type="Object" clazz="Object">
+                <k name="selectedChangedHandler_js" type="String"><![CDATA[if (selectedItem != null) {
+	var Year = selectedItem.toString();
+	MC.setValue("Year",Year);
+}]]></k>
+              </P>
+            </C>
+            <C id="yearLabel" clazz="com.efounder.controls::FormLabel">
+              <P name="id" type="String">yearLabel</P>
+              <P name="x" type="Number">255</P>
+              <P name="y" type="Number">2</P>
+              <P name="width" type="Number">30</P>
+              <P name="height" type="Number">25</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="borderVisible" type="Boolean">false</P>
+              <P name="borderStyle" type="String">bottom</P>
+              <P name="borderWidth" type="Number">1</P>
+              <P name="borderColor" type="uint">0</P>
+              <P name="borderAlpha" type="Number">1</P>
+              <P name="isUserInternalDataSetID" type="Boolean">false</P>
+              <P name="originalText" type="String">年</P>
+              <P name="showAsHand" type="Boolean">false</P>
+              <P name="useDefinedStyle" type="Boolean">true</P>
+              <P name="fontFamily" type="String">Arial</P>
+              <P name="fontSize" type="String">14</P>
+              <P name="color" type="uint">0</P>
+              <P name="fontWeight" type="String">bold</P>
+              <P name="fontStyle" type="String">normal</P>
+              <P name="textDecoration" type="String">none</P>
+              <P name="textAlign" type="String">center</P>
+              <P name="verticalAlign" type="String">middle</P>
+            </C>
+            <C id="monthField" clazz="com.efounder.controls::FormMonthComboBox">
+              <P name="id" type="String">monthField</P>
+              <P name="x" type="Number">290</P>
+              <P name="y" type="Number">2</P>
+              <P name="width" type="Number">80</P>
+              <P name="height" type="Number">25</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="isUserInternalDataSetID" type="Boolean">false</P>
+              <P name="canEdit" type="Boolean">true</P>
+              <P name="canInput" type="Boolean">false</P>
+              <P name="useDefinedStyle" type="Boolean">false</P>
+              <P name="fontFamily" type="String">Arial</P>
+              <P name="fontSize" type="int">12</P>
+              <P name="fontColor" type="uint">0</P>
+              <P name="borderColor" type="uint">10602458</P>
+              <P name="backgroundColor" type="uint">16777215</P>
+              <P name="arrowColor" type="uint">0</P>
+              <P name="scriptObject" type="Object" clazz="Object">
+                <k name="selectedChangedHandler_js" type="String"><![CDATA[if (selectedItem != null) {
+	var Month = selectedItem.toString();
+	MC.setValue("Month", Month);
+}]]></k>
+              </P>
+            </C>
+            <C id="monthLabel" clazz="com.efounder.controls::FormLabel">
+              <P name="id" type="String">monthLabel</P>
+              <P name="x" type="Number">375</P>
+              <P name="y" type="Number">2</P>
+              <P name="width" type="Number">30</P>
+              <P name="height" type="Number">25</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="borderVisible" type="Boolean">false</P>
+              <P name="borderStyle" type="String">bottom</P>
+              <P name="borderWidth" type="Number">1</P>
+              <P name="borderColor" type="uint">0</P>
+              <P name="borderAlpha" type="Number">1</P>
+              <P name="isUserInternalDataSetID" type="Boolean">false</P>
+              <P name="originalText" type="String">月</P>
+              <P name="showAsHand" type="Boolean">false</P>
+              <P name="useDefinedStyle" type="Boolean">true</P>
+              <P name="fontFamily" type="String">Arial</P>
+              <P name="fontSize" type="String">14</P>
+              <P name="color" type="uint">0</P>
+              <P name="fontWeight" type="String">bold</P>
+              <P name="fontStyle" type="String">normal</P>
+              <P name="textDecoration" type="String">none</P>
+              <P name="textAlign" type="String">center</P>
+              <P name="verticalAlign" type="String">middle</P>
+            </C>
+            <C id="codeLabel" clazz="com.efounder.controls::FormLabel">
+              <P name="id" type="String">codeLabel</P>
+              <P name="x" type="Number">410</P>
+              <P name="y" type="Number">2</P>
+              <P name="width" type="Number">80</P>
+              <P name="height" type="Number">25</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="borderVisible" type="Boolean">false</P>
+              <P name="borderStyle" type="String">bottom</P>
+              <P name="borderWidth" type="Number">1</P>
+              <P name="borderColor" type="uint">0</P>
+              <P name="borderAlpha" type="Number">1</P>
+              <P name="isUserInternalDataSetID" type="Boolean">false</P>
+              <P name="originalText" type="String">核算主体：</P>
+              <P name="showAsHand" type="Boolean">false</P>
+              <P name="useDefinedStyle" type="Boolean">true</P>
+              <P name="fontFamily" type="String">Arial</P>
+              <P name="fontSize" type="String">14</P>
+              <P name="color" type="uint">0</P>
+              <P name="fontWeight" type="String">bold</P>
+              <P name="fontStyle" type="String">normal</P>
+              <P name="textDecoration" type="String">none</P>
+              <P name="textAlign" type="String">center</P>
+              <P name="verticalAlign" type="String">middle</P>
+            </C>
+            <C id="codeField" clazz="com.efounder.comp.help::DataSetFieldComboBox">
+              <P name="id" type="String">codeField</P>
+              <P name="x" type="Number">495</P>
+              <P name="y" type="Number">2</P>
+              <P name="width" type="Number">250</P>
+              <P name="height" type="Number">25</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="helpDicId" type="String"></P>
+              <P name="helpWinTitle" type="String">核算主体帮助</P>
+              <P name="helpWinWidth" type="Number">700</P>
+              <P name="helpWinHeight" type="Number">500</P>
+              <P name="isFilter" type="Boolean">false</P>
+              <P name="btuPosition" type="String">below</P>
+              <P name="displayBasicCol" type="Boolean">true</P>
+              <P name="editable" type="Boolean">false</P>
+              <P name="canEdit" type="Boolean">true</P>
+              <P name="checkMX" type="Boolean">false</P>
+              <P name="isNotUseDictLimit" type="Boolean">false</P>
+              <P name="helpIds" type="String">dctHelp</P>
+              <P name="mdModel" type="com.efounder.model.MDModel" isRefType="true">MDModel</P>
+              <P name="dataSetComponent" type="com.efounder.form.DataSetComponent" isRefType="true">MDModel</P>
+              <P name="dataSetID" type="String">ACZRZX</P>
+              <P name="dataSetColID" type="String">F_CODE</P>
+              <P name="internalDataSetID" type="String">ACZRZX</P>
+              <P name="isUserInternalDataSetID" type="Boolean">false</P>
+              <P name="isLevelLoad" type="Boolean">true</P>
+              <P name="viewDataSetID" type="String">ACZRZX</P>
+              <P name="serviceKey" type="String">LargeDICTService</P>
+              <P name="isShowCheckBox" type="Boolean">false</P>
+              <P name="limitID" type="String"></P>
+              <P name="isLoadMX" type="String"></P>
+              <P name="isLevel" type="String">1</P>
+              <P name="showCode" type="Boolean">false</P>
+              <P name="showName" type="Boolean">false</P>
+              <P name="isLoadFKey" type="String">1</P>
+              <P name="helpIconStyle" type="String">0</P>
+              <P name="customImage" type="Boolean">false</P>
+              <P name="iconURL" type="String"></P>
+              <P name="useEnterE" type="Boolean">false</P>
+              <P name="useMidModel" type="Boolean">false</P>
+              <P name="allowHandEnter" type="Boolean">false</P>
+              <P name="isAddTailByHandEnter" type="Boolean">false</P>
+              <P name="checkFKey" type="Boolean">true</P>
+              <P name="rowHeight" type="int">22</P>
+              <P name="isGetNameWithLimtID" type="Boolean">true</P>
+              <P name="isShowAlertNOBH" type="Boolean">true</P>
+              <P name="prompt" type="String"></P>
+              <P name="useDefinedStyle" type="Boolean">false</P>
+              <P name="fontFamily" type="String">Arial</P>
+              <P name="fontSize" type="int">12</P>
+              <P name="fontColor" type="uint">0</P>
+              <P name="borderColor" type="uint">10602458</P>
+              <P name="backgroundColor" type="uint">16777215</P>
+              <P name="isPaging" type="Boolean">false</P>
+              <P name="pagingShowNum" type="Number">20</P>
+              <P name="scriptObject" type="Object" clazz="Object">
+                <k name="afterSelectedDict_js" type="String"><![CDATA[var code = mainRowSet.getString("F_CODE","");
+MC.setValue("code", code);]]></k>
+              </P>
+              <P name="isExpandAll" type="Boolean">false</P>
+              <P name="itemClickOpenNext" type="Boolean">false</P>
+            </C>
+          </C>
+          <C id="BackgroundContainer1455694574669" clazz="com.efounder.containers::BackgroundContainer">
+            <P name="id" type="String">BackgroundContainer1455694574669</P>
+            <P name="x" type="Number">5</P>
+            <P name="y" type="Number">45</P>
+            <P name="width" type="Number">838</P>
+            <P name="height" type="Number">312</P>
+            <P name="percentWidth" type="Number">100</P>
+            <P name="visible" type="Boolean">true</P>
+            <P name="tabIndex" type="int">-1</P>
+            <P name="gap" type="int">5</P>
+            <P name="paddingLeft" type="Number">0</P>
+            <P name="paddingRight" type="Number">0</P>
+            <P name="paddingTop" type="Number">0</P>
+            <P name="paddingBottom" type="Number">0</P>
+            <P name="layoutType" type="String">vertical</P>
+            <P name="horizontalAlign" type="String">left</P>
+            <P name="verticalAlign" type="String">top</P>
+            <P name="borderColor" type="uint">12040892</P>
+            <P name="borderWeight" type="Number">1</P>
+            <P name="borderAlpha" type="Number">1</P>
+            <P name="cornerRadius" type="Number">1</P>
+            <P name="borderVisible" type="Boolean">true</P>
+            <P name="showTopBorder" type="Boolean">true</P>
+            <P name="showBottomBorder" type="Boolean">true</P>
+            <P name="showLeftBorder" type="Boolean">true</P>
+            <P name="showRightBorder" type="Boolean">true</P>
+            <P name="showAsHand" type="Boolean">false</P>
+            <P name="showShadow" type="Boolean">false</P>
+            <P name="shadowRadius" type="int">3</P>
+            <P name="shadowColor" type="uint">13421772</P>
+            <P name="borderStyle" type="String">SOLID</P>
+            <P name="backgroundColor" type="uint">16777215</P>
+            <P name="backgroundImageURL" type="String"></P>
+            <P name="backgroundImageFillMode" type="String">scale</P>
+            <P name="backgroundImagePosition" type="String"></P>
+            <C id="checkNRArea" clazz="com.efounder.controls::FormTextArea">
+              <P name="id" type="String">checkNRArea</P>
+              <P name="x" type="Number">0</P>
+              <P name="y" type="Number">0</P>
+              <P name="width" type="Number">836</P>
+              <P name="height" type="Number">110</P>
+              <P name="percentWidth" type="Number">100</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="isUserInternalDataSetID" type="Boolean">false</P>
+              <P name="maxChars" type="int">0</P>
+              <P name="allowPaste" type="Boolean">true</P>
+              <P name="useDefinedStyle" type="Boolean">false</P>
+              <P name="fontColor" type="uint">13311</P>
+              <P name="fontFamily" type="String">Arial</P>
+              <P name="fontSize" type="int">12</P>
+              <P name="borderColor" type="uint">10602458</P>
+              <P name="backgroundColor" type="uint">16777215</P>
+              <P name="cornerRadius" type="Number">2</P>
+              <P name="canEdit" type="Boolean">false</P>
+              <P name="isAutoFeed" type="Boolean">false</P>
+            </C>
+            <C id="checkLogArea" clazz="com.efounder.controls::FormTextArea">
+              <P name="id" type="String">checkLogArea</P>
+              <P name="x" type="Number">0</P>
+              <P name="y" type="Number">115</P>
+              <P name="width" type="Number">836</P>
+              <P name="height" type="Number">189</P>
+              <P name="percentWidth" type="Number">100</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="isUserInternalDataSetID" type="Boolean">false</P>
+              <P name="maxChars" type="int">0</P>
+              <P name="allowPaste" type="Boolean">true</P>
+              <P name="useDefinedStyle" type="Boolean">false</P>
+              <P name="fontColor" type="uint">0</P>
+              <P name="fontFamily" type="String">Arial</P>
+              <P name="fontSize" type="int">12</P>
+              <P name="borderColor" type="uint">10602458</P>
+              <P name="backgroundColor" type="uint">16777215</P>
+              <P name="cornerRadius" type="Number">2</P>
+              <P name="canEdit" type="Boolean">false</P>
+              <P name="isAutoFeed" type="Boolean">false</P>
+            </C>
+          </C>
+          <C id="BackgroundContainer1455694576230" clazz="com.efounder.containers::BackgroundContainer">
+            <P name="id" type="String">BackgroundContainer1455694576230</P>
+            <P name="x" type="Number">5</P>
+            <P name="y" type="Number">362</P>
+            <P name="width" type="Number">886</P>
+            <P name="height" type="Number">30</P>
+            <P name="percentWidth" type="Number">100</P>
+            <P name="percentHeight" type="Number">0</P>
+            <P name="visible" type="Boolean">true</P>
+            <P name="tabIndex" type="int">-1</P>
+            <P name="gap" type="int">10</P>
+            <P name="paddingLeft" type="Number">0</P>
+            <P name="paddingRight" type="Number">20</P>
+            <P name="paddingTop" type="Number">2</P>
+            <P name="paddingBottom" type="Number">5</P>
+            <P name="layoutType" type="String">horizontal</P>
+            <P name="horizontalAlign" type="String">right</P>
+            <P name="verticalAlign" type="String">middle</P>
+            <P name="borderColor" type="uint">12040892</P>
+            <P name="borderWeight" type="Number">1</P>
+            <P name="borderAlpha" type="Number">1</P>
+            <P name="cornerRadius" type="Number">1</P>
+            <P name="borderVisible" type="Boolean">true</P>
+            <P name="showTopBorder" type="Boolean">true</P>
+            <P name="showBottomBorder" type="Boolean">true</P>
+            <P name="showLeftBorder" type="Boolean">true</P>
+            <P name="showRightBorder" type="Boolean">true</P>
+            <P name="showAsHand" type="Boolean">false</P>
+            <P name="showShadow" type="Boolean">false</P>
+            <P name="shadowRadius" type="int">3</P>
+            <P name="shadowColor" type="uint">13421772</P>
+            <P name="borderStyle" type="String">SOLID</P>
+            <P name="backgroundColor" type="uint">16777215</P>
+            <P name="backgroundImageURL" type="String"></P>
+            <P name="backgroundImageFillMode" type="String">scale</P>
+            <P name="backgroundImagePosition" type="String"></P>
+            <C id="exportButton" clazz="com.efounder.controls::FormButton">
+              <P name="id" type="String">exportButton</P>
+              <P name="x" type="Number">214</P>
+              <P name="y" type="Number">2</P>
+              <P name="width" type="Number">60</P>
+              <P name="height" type="Number">25</P>
+              <P name="toolTip" type="String">转出检查内容</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="label" type="String">转出</P>
+              <P name="iconURL" type="String"></P>
+              <P name="useDefinedCSSStyle" type="Boolean">false</P>
+              <P name="definedCSS" type="String">gwt-Button</P>
+              <P name="useDefinedStyle" type="Boolean">false</P>
+              <P name="fontFamily" type="String">Arial</P>
+              <P name="fontSize" type="String">12</P>
+              <P name="color" type="uint">0</P>
+              <P name="fontWeight" type="String">normal</P>
+              <P name="fontStyle" type="String">normal</P>
+              <P name="textDecoration" type="String">none</P>
+              <P name="backgroundUpColor" type="uint">0</P>
+              <P name="backgroundDownColor" type="uint">0</P>
+              <P name="backgroundOverColor" type="uint">0</P>
+              <P name="foucsColor" type="uint">0</P>
+              <P name="backgroundDisableColor" type="uint">0</P>
+              <P name="compositeKey" type="String">2</P>
+            </C>
+            <C id="checkButton" clazz="com.efounder.controls::FormButton">
+              <P name="id" type="String">checkButton</P>
+              <P name="x" type="Number">284</P>
+              <P name="y" type="Number">2</P>
+              <P name="width" type="Number">60</P>
+              <P name="height" type="Number">25</P>
+              <P name="toolTip" type="String">检查</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="label" type="String">检查</P>
+              <P name="iconURL" type="String"></P>
+              <P name="scriptObject" type="Object" clazz="Object">
+                <k name="click_js" type="String"><![CDATA[var code = codeField.getObject();
+var Year = kjndField.getObject();
+var Month = monthField.getObject();
+
+if (code == null || code == "") {
+	alert("请先选择核算主体！");return;
+}
+if (Year == null || Year == "") {
+	alert("请先选择年度！");return;
+}
+if (Month == null || Month == "") {
+	alert("请先选择期间！");return;
+}
+var PO = $wnd.JParamObject();
+PO.setValueByParamName("Year", Year);
+PO.setValueByParamName("Month", Month);
+PO.setValueByParamName("CHCode", code);
+PO.setValueByParamName("CHECKTYPE", "F_YMJC");
+PO.setValueByParamName("serviceKey", "CloseAccountPeriodCheck");
+PO.setValueByParamName("successMess", "检查完成，可以关闭会计期间。");
+$wnd.monthlyCheck(checkBackFC, PO);
+checkLogArea.setValue(" 正在进行月结检查.....");]]></k>
+              </P>
+              <P name="useDefinedCSSStyle" type="Boolean">false</P>
+              <P name="definedCSS" type="String">gwt-Button</P>
+              <P name="useDefinedStyle" type="Boolean">false</P>
+              <P name="fontFamily" type="String">Arial</P>
+              <P name="fontSize" type="String">12</P>
+              <P name="color" type="uint">0</P>
+              <P name="fontWeight" type="String">normal</P>
+              <P name="fontStyle" type="String">normal</P>
+              <P name="textDecoration" type="String">none</P>
+              <P name="backgroundUpColor" type="uint">0</P>
+              <P name="backgroundDownColor" type="uint">0</P>
+              <P name="backgroundOverColor" type="uint">0</P>
+              <P name="foucsColor" type="uint">0</P>
+              <P name="backgroundDisableColor" type="uint">0</P>
+              <P name="compositeKey" type="String">2</P>
+            </C>
+            <C id="closeQJButton" clazz="com.efounder.controls::FormButton">
+              <P name="id" type="String">closeQJButton</P>
+              <P name="x" type="Number">354</P>
+              <P name="y" type="Number">2</P>
+              <P name="width" type="Number">70</P>
+              <P name="height" type="Number">25</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="label" type="String">关闭期间</P>
+              <P name="iconURL" type="String"></P>
+              <P name="scriptObject" type="Object" clazz="Object">
+                <k name="click_js" type="String"><![CDATA[var code = codeField.getObject();
+var Year = kjndField.getObject();
+var Month = monthField.getObject();
+if (code == null || code == "") {
+	//alert("请先选择核算主体！");return;
+}
+if (Year == null || Year == "") {
+	alert("请先选择年度！");return;
+}
+if (Month == null || Month == "") {
+	alert("请先选择期间！");return;
+}
+var PO = $wnd.JParamObject();
+PO.setValueByParamName("Year", Year);
+PO.setValueByParamName("Month", Month);
+PO.setValueByParamName("CHCode", code);
+PO.setValueByParamName("CHECKTYPE", "F_YMGZ");
+PO.setValueByParamName("serviceKey", "CloseAccountPeriod");
+//PO.setValueByParamName("eaiServer", "TradeServer");
+$wnd.closeKJQJ(checkBackFC, PO);
+checkLogArea.setValue(" 正在进行关闭期间.....");]]></k>
+              </P>
+              <P name="useDefinedCSSStyle" type="Boolean">false</P>
+              <P name="definedCSS" type="String">gwt-Button</P>
+              <P name="useDefinedStyle" type="Boolean">false</P>
+              <P name="fontFamily" type="String">Arial</P>
+              <P name="fontSize" type="String">12</P>
+              <P name="color" type="uint">0</P>
+              <P name="fontWeight" type="String">normal</P>
+              <P name="fontStyle" type="String">normal</P>
+              <P name="textDecoration" type="String">none</P>
+              <P name="backgroundUpColor" type="uint">0</P>
+              <P name="backgroundDownColor" type="uint">0</P>
+              <P name="backgroundOverColor" type="uint">0</P>
+              <P name="foucsColor" type="uint">0</P>
+              <P name="backgroundDisableColor" type="uint">0</P>
+              <P name="compositeKey" type="String">2</P>
+            </C>
+            <C id="closeNDButton" clazz="com.efounder.controls::FormButton">
+              <P name="id" type="String">closeNDButton</P>
+              <P name="x" type="Number">434</P>
+              <P name="y" type="Number">2</P>
+              <P name="width" type="Number">60</P>
+              <P name="height" type="Number">25</P>
+              <P name="toolTip" type="String">年结</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="label" type="String">年结</P>
+              <P name="iconURL" type="String"></P>
+              <P name="scriptObject" type="Object" clazz="Object">
+                <k name="click_js" type="String"><![CDATA[var code = codeField.getObject();
+var Year = kjndField.getObject();
+var Month = monthField.getObject();
+code = "10006000";
+if (Year == null || Year == "") {
+	alert("请先选择年度！");return;
+}
+var PO = $wnd.JParamObject();
+PO.setValueByParamName("Year", Year);
+PO.setValueByParamName("serviceKey", "ZWCloseYear");
+$wnd.closeKJQJ(checkBackFC, PO);
+checkLogArea.setValue(" 正在进行年结.....");]]></k>
+              </P>
+              <P name="useDefinedCSSStyle" type="Boolean">false</P>
+              <P name="definedCSS" type="String">gwt-Button</P>
+              <P name="useDefinedStyle" type="Boolean">false</P>
+              <P name="fontFamily" type="String">Arial</P>
+              <P name="fontSize" type="String">12</P>
+              <P name="color" type="uint">0</P>
+              <P name="fontWeight" type="String">normal</P>
+              <P name="fontStyle" type="String">normal</P>
+              <P name="textDecoration" type="String">none</P>
+              <P name="backgroundUpColor" type="uint">0</P>
+              <P name="backgroundDownColor" type="uint">0</P>
+              <P name="backgroundOverColor" type="uint">0</P>
+              <P name="foucsColor" type="uint">0</P>
+              <P name="backgroundDisableColor" type="uint">0</P>
+              <P name="compositeKey" type="String">2</P>
+            </C>
+            <C id="jzqlCheck" clazz="com.efounder.controls::FormCheckBox">
+              <P name="id" type="String">jzqlCheck</P>
+              <P name="x" type="Number">504</P>
+              <P name="y" type="Number">2</P>
+              <P name="width" type="Number">70</P>
+              <P name="height" type="Number">25</P>
+              <P name="toolTip" type="String">结转清零</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="isUserInternalDataSetID" type="Boolean">true</P>
+              <P name="label" type="String">结转清零</P>
+              <P name="selValue" type="String">1</P>
+              <P name="deSelValue" type="String">0</P>
+              <P name="canEdit" type="Boolean">true</P>
+              <P name="useDefinedStyle" type="Boolean">true</P>
+              <P name="fontColor" type="uint">0</P>
+              <P name="fontSize" type="int">12</P>
+              <P name="borderColor" type="uint">11909320</P>
+              <P name="backgroundColor" type="uint">16777215</P>
+              <P name="symbolColor" type="uint">0</P>
+            </C>
+            <C id="tbyeButton" clazz="com.efounder.controls::FormButton">
+              <P name="id" type="String">tbyeButton</P>
+              <P name="x" type="Number">584</P>
+              <P name="y" type="Number">2</P>
+              <P name="width" type="Number">70</P>
+              <P name="height" type="Number">25</P>
+              <P name="toolTip" type="String">同步余额</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="label" type="String">同步余额</P>
+              <P name="iconURL" type="String"></P>
+              <P name="scriptObject" type="Object" clazz="Object">
+                <k name="click_js" type="String"><![CDATA[var code = codeField.getObject();
+var Year = kjndField.getObject();
+var Month = monthField.getObject();
+
+var jzql = jzqlCheck.getObject();
+if (code == null || code == "") {
+	alert("请先选择核算主体！");return;
+}
+if (Year == null || Year == "") {
+	alert("请先选择年度！");return;
+}
+if (Month == null || Month == "") {
+	alert("请先选择期间！");return;
+}
+var PO = $wnd.JParamObject();
+
+if("1" == jzql){
+	PO.setValueByParamName("ZW_NMJZQL", "1");
+}else{
+	PO.setValueByParamName("ZW_NMJZQL", "0");
+}
+
+PO.setValueByParamName("REF_MDL", "ACPZModel");
+PO.setValueByParamName("Year", Year);
+PO.setValueByParamName("CHCode", code);
+PO.setValueByParamName("TYPE", "refreshBalance");
+PO.setValueByParamName("Model","ACPZModel");
+PO.setValueByParamName("UNIT_ID",PO.getEnv("UNIT_ID", ""));
+WebServicererefreshBalancecheck.IOM("ESPRefreshBalanceService","refreshBalancecheckKey",PO);
+checkLogArea.setValue("开始刷新余额...");
+]]></k>
+              </P>
+              <P name="useDefinedCSSStyle" type="Boolean">false</P>
+              <P name="definedCSS" type="String">gwt-Button</P>
+              <P name="useDefinedStyle" type="Boolean">false</P>
+              <P name="fontFamily" type="String">Arial</P>
+              <P name="fontSize" type="String">12</P>
+              <P name="color" type="uint">0</P>
+              <P name="fontWeight" type="String">normal</P>
+              <P name="fontStyle" type="String">normal</P>
+              <P name="textDecoration" type="String">none</P>
+              <P name="backgroundUpColor" type="uint">0</P>
+              <P name="backgroundDownColor" type="uint">0</P>
+              <P name="backgroundOverColor" type="uint">0</P>
+              <P name="foucsColor" type="uint">0</P>
+              <P name="backgroundDisableColor" type="uint">0</P>
+              <P name="compositeKey" type="String">2</P>
+            </C>
+            <C id="qynndButton" clazz="com.efounder.controls::FormButton">
+              <P name="id" type="String">qynndButton</P>
+              <P name="x" type="Number">664</P>
+              <P name="y" type="Number">2</P>
+              <P name="width" type="Number">60</P>
+              <P name="height" type="Number">25</P>
+              <P name="toolTip" type="String">启用新年度</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="label" type="String">启用</P>
+              <P name="iconURL" type="String"></P>
+              <P name="scriptObject" type="Object" clazz="Object">
+                <k name="click_js" type="String"><![CDATA[var code = codeField.getObject();
+var Year = kjndField.getObject();
+var Month = monthField.getObject();
+
+
+if (Year == null || Year == "") {
+	alert("请先选择年度！");return;
+}
+if (Month == null || Month == "") {
+	alert("请先选择期间！");return;
+}
+var PO = $wnd.JParamObject();
+PO.setValueByParamName("Year", Year);
+PO.setValueByParamName("Month", "01");
+//PO.setValueByParamName("CHCode", code);
+PO.setValueByParamName("CHECKTYPE", "F_YMJC");
+PO.setValueByParamName("serviceKey", "StartNewYear");
+PO.setValueByParamName("Model","ACPZModel");
+PO.setValueByParamName("successMess", "启用新年度。");
+$wnd.monthlyCheck(checkBackFC, PO);
+checkLogArea.setValue("开始启用新年度。");
+var timer = MC.getValue("timer","1")
+	if(timer != "1"){
+		TimerComponent.start();
+		MC.setValue("timer","1");
+}]]></k>
+              </P>
+              <P name="useDefinedCSSStyle" type="Boolean">false</P>
+              <P name="definedCSS" type="String">gwt-Button</P>
+              <P name="useDefinedStyle" type="Boolean">false</P>
+              <P name="fontFamily" type="String">Arial</P>
+              <P name="fontSize" type="String">12</P>
+              <P name="color" type="uint">0</P>
+              <P name="fontWeight" type="String">normal</P>
+              <P name="fontStyle" type="String">normal</P>
+              <P name="textDecoration" type="String">none</P>
+              <P name="backgroundUpColor" type="uint">0</P>
+              <P name="backgroundDownColor" type="uint">0</P>
+              <P name="backgroundOverColor" type="uint">0</P>
+              <P name="foucsColor" type="uint">0</P>
+              <P name="backgroundDisableColor" type="uint">0</P>
+              <P name="compositeKey" type="String">2</P>
+            </C>
+            <C id="jzqlButton" clazz="com.efounder.controls::FormButton">
+              <P name="id" type="String">jzqlButton</P>
+              <P name="x" type="Number">734</P>
+              <P name="y" type="Number">2</P>
+              <P name="width" type="Number">60</P>
+              <P name="height" type="Number">25</P>
+              <P name="toolTip" type="String">年末结转清零</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="label" type="String">确定</P>
+              <P name="iconURL" type="String"></P>
+              <P name="useDefinedCSSStyle" type="Boolean">false</P>
+              <P name="definedCSS" type="String">gwt-Button</P>
+              <P name="useDefinedStyle" type="Boolean">false</P>
+              <P name="fontFamily" type="String">Arial</P>
+              <P name="fontSize" type="String">12</P>
+              <P name="color" type="uint">0</P>
+              <P name="fontWeight" type="String">normal</P>
+              <P name="fontStyle" type="String">normal</P>
+              <P name="textDecoration" type="String">none</P>
+              <P name="backgroundUpColor" type="uint">0</P>
+              <P name="backgroundDownColor" type="uint">0</P>
+              <P name="backgroundOverColor" type="uint">0</P>
+              <P name="foucsColor" type="uint">0</P>
+              <P name="backgroundDisableColor" type="uint">0</P>
+              <P name="compositeKey" type="String">2</P>
+            </C>
+            <C id="exitButton" clazz="com.efounder.controls::FormButton">
+              <P name="id" type="String">exitButton</P>
+              <P name="x" type="Number">804</P>
+              <P name="y" type="Number">2</P>
+              <P name="width" type="Number">60</P>
+              <P name="height" type="Number">25</P>
+              <P name="toolTip" type="String">退出</P>
+              <P name="visible" type="Boolean">true</P>
+              <P name="tabIndex" type="int">-1</P>
+              <P name="label" type="String">退出</P>
+              <P name="iconURL" type="String"></P>
+              <P name="action" type="com.efounder.form.base.ActionComponent" isRefType="true">WindowExitAction1477537544871</P>
+              <P name="scriptObject" type="Object" clazz="Object">
+                <k name="click_js" type="String"></k>
+              </P>
+              <P name="useDefinedCSSStyle" type="Boolean">false</P>
+              <P name="definedCSS" type="String">gwt-Button</P>
+              <P name="useDefinedStyle" type="Boolean">false</P>
+              <P name="fontFamily" type="String">Arial</P>
+              <P name="fontSize" type="String">12</P>
+              <P name="color" type="uint">0</P>
+              <P name="fontWeight" type="String">normal</P>
+              <P name="fontStyle" type="String">normal</P>
+              <P name="textDecoration" type="String">none</P>
+              <P name="backgroundUpColor" type="uint">0</P>
+              <P name="backgroundDownColor" type="uint">0</P>
+              <P name="backgroundOverColor" type="uint">0</P>
+              <P name="foucsColor" type="uint">0</P>
+              <P name="backgroundDisableColor" type="uint">0</P>
+              <P name="compositeKey" type="String">2</P>
+            </C>
+          </C>
+        </C>
+      </C>
+    </form>
+  </forms>
+  <models>
+    <M id="MC" clazz="com.efounder.form.model::ModelContainer">
+      <P name="id" type="String">MC</P>
+      <P name="label" type="String">MC</P>
+      <M id="MDModel" clazz="com.efounder.model::MDModel">
+        <P name="id" type="String">MDModel</P>
+        <P name="label" type="String">MDModel</P>
+        <P name="MDL_ID" type="String"></P>
+        <P name="DCT_ID" type="String">ACZRZX</P>
+        <P name="FKEY_ID" type="String"></P>
+        <P name="RLGL_ID" type="String"></P>
+        <P name="serviceKey" type="String">LargeDICTService</P>
+        <P name="isShowWaitingWindow" type="Boolean">true</P>
+        <P name="isDispachEditEvent" type="Boolean">false</P>
+        <P name="isDefaultValueAddBlank" type="Boolean">true</P>
+        <P name="isLoadFKey" type="String">1</P>
+      </M>
+      <M id="checkBackFC" clazz="com.efounder.model::FunctionComp">
+        <P name="id" type="String">checkBackFC</P>
+        <P name="label" type="String">checkBackFC</P>
+        <P name="scriptObject" type="Object" clazz="Object">
+          <k name="callFunction_js" type="String"><![CDATA[var oldVal = checkLogArea.getValue();
+checkLogArea.setValue(oldVal + "\n"+data);]]></k>
+        </P>
+      </M>
+      <M id="ESPService" clazz="com.efounder.adapter::ESPService">
+        <P name="id" type="String">ESPService</P>
+        <P name="label" type="String">ESPService</P>
+        <P name="serviceKey" type="String">CloseAccountPeriodCheck</P>
+      </M>
+      <M id="WebServicererefreshBalancecheck" clazz="com.efounder.model::WebService">
+        <P name="id" type="String">WebServicererefreshBalancecheck</P>
+        <P name="label" type="String">同步余额前的检查</P>
+        <P name="sucess" type="com.efounder.action.IFunction" isRefType="true">FunctionComp1477539152551</P>
+        <P name="isShowBusyWindow" type="Boolean">false</P>
+        <P name="WaitMessage" type="String">正在加载数据，请稍候...</P>
+      </M>
+      <M id="FunctionComp1477539152551" clazz="com.efounder.model::FunctionComp">
+        <P name="id" type="String">FunctionComp1477539152551</P>
+        <P name="label" type="String">同步余额前的检查</P>
+        <P name="scriptObject" type="Object" clazz="Object">
+          <k name="callFunction_js" type="String"><![CDATA[if (data.getErrorCode() == -1) {
+	alert("该机构正在进行结转清零或同步余额相关操作，不能重复提交！");return;
+}else{
+	
+	var code = codeField.getObject();
+	var Year = kjndField.getObject();
+	var Month = monthField.getObject();
+
+	var jzql = jzqlCheck.getObject();
+if (code == null || code == "") {
+	alert("请先选择核算主体！");return;
+}
+	if (Year == null || Year == "") {
+		alert("请先选择年度！");return;
+	}
+	if (Month == null || Month == "") {
+		alert("请先选择期间！");return;
+	}
+	var PO = $wnd.JParamObject();
+
+	if("1" == jzql){
+		PO.setValueByParamName("ZW_NMJZQL", "1");
+	}else{
+		PO.setValueByParamName("ZW_NMJZQL", "0");
+	}
+	PO.setValueByParamName("REF_MDL", "ACPZModel");
+	PO.setValueByParamName("Year", Year);
+	PO.setValueByParamName("CHCode", code);
+	PO.setValueByParamName("TYPE", "refreshBalance");
+	PO.setValueByParamName("UNIT_ID",PO.getEnv("UNIT_ID", ""));
+	PO.setValueByParamName("Model","ACPZModel");
+	PO.setValueByParamName("CHECK_REF_KEY","0");
+	WebServiceRefreshBalance.IOM("ESPRefreshBalanceService","refreshBalance",PO);
+	checkLogArea.setValue("开始刷新余额...");
+	var timer = MC.getValue("timer","1")
+	if(timer != "1"){
+		TimerComponent.start();
+		MC.setValue("timer","1");
+	}
+}]]></k>
+        </P>
+      </M>
+      <M id="WebServiceRefreshBalance" clazz="com.efounder.model::WebService">
+        <P name="id" type="String">WebServiceRefreshBalance</P>
+        <P name="label" type="String">同步余额</P>
+        <P name="sucess" type="com.efounder.action.IFunction" isRefType="true">FunctionCompRefresh</P>
+        <P name="isShowBusyWindow" type="Boolean">false</P>
+        <P name="WaitMessage" type="String">正在加载数据，请稍候...</P>
+      </M>
+      <M id="FunctionCompRefresh" clazz="com.efounder.model::FunctionComp">
+        <P name="id" type="String">FunctionCompRefresh</P>
+        <P name="label" type="String">FunctionComp1477539319196</P>
+      </M>
+      <M id="WebServiceLog" clazz="com.efounder.model::WebService">
+        <P name="id" type="String">WebServiceLog</P>
+        <P name="label" type="String">日志</P>
+        <P name="sucess" type="com.efounder.action.IFunction" isRefType="true">FunctionCompLog</P>
+        <P name="isShowBusyWindow" type="Boolean">false</P>
+        <P name="WaitMessage" type="String">正在加载数据，请稍候...</P>
+      </M>
+      <M id="FunctionListComp" clazz="com.efounder.model::FunctionListComp">
+        <P name="id" type="String">FunctionListComp</P>
+        <P name="label" type="String">FunctionListComp1477960608759</P>
+        <P name="scriptObject" type="Object" clazz="Object">
+          <k name="getLog_js" type="String"><![CDATA[var code = codeField.getObject();
+var Year = kjndField.getObject();
+var Month = monthField.getObject();
+
+var jzql = jzqlCheck.getObject();
+
+var PO = $wnd.JParamObject();
+
+if("1" == jzql){
+	PO.setValueByParamName("ZW_NMJZQL", "1");
+}else{
+	PO.setValueByParamName("ZW_NMJZQL", "0");
+}
+
+PO.setValueByParamName("REF_MDL", "ACPZModel");
+PO.setValueByParamName("Year", Year);
+PO.setValueByParamName("CHCode", code);
+PO.setValueByParamName("TYPE", "refreshBalance");
+PO.setValueByParamName("Model","ACPZModel");
+PO.setValueByParamName("UNIT_ID",PO.getEnv("UNIT_ID", ""));
+WebServiceLog.IOM("VoucherObject","getMsg",PO);]]></k>
+        </P>
+        <P name="functionMap" type="Object" clazz="Object">
+          <k name="getLog" type="String"><![CDATA[读取日志信息]]></k>
+        </P>
+      </M>
+      <M id="TimerComponent" clazz="com.efounder.model::TimerComponent">
+        <P name="id" type="String">TimerComponent</P>
+        <P name="label" type="String">TimerComponent1477961003220</P>
+        <P name="delay" type="Number">4</P>
+        <P name="repeatCount" type="int">0</P>
+        <P name="actionComponent" type="com.efounder.form.base.ActionComponent" isRefType="true">GenerActionLog</P>
+      </M>
+      <M id="FunctionCompLog" clazz="com.efounder.model::FunctionComp">
+        <P name="id" type="String">FunctionCompLog</P>
+        <P name="label" type="String">日志读取函数</P>
+        <P name="scriptObject" type="Object" clazz="Object">
+          <k name="callFunction_js" type="String"><![CDATA[if(data == null) return;
+$wnd.getrefreshBalanceLog(data,checkLogArea);]]></k>
+        </P>
+      </M>
+      <M id="WindowExitAction1477537544871" clazz="com.efounder.action::WindowExitAction">
+        <P name="id" type="String">WindowExitAction1477537544871</P>
+        <P name="label" type="String">WindowExitAction1477537544871</P>
+        <P name="height" type="int">30</P>
+        <P name="width" type="int">70</P>
+        <P name="visible" type="Boolean">true</P>
+        <P name="actionText" type="String">退出</P>
+        <P name="actionIcon" type="String"></P>
+        <P name="GNBH" type="String"></P>
+        <P name="isOperateLog" type="Boolean">false</P>
+        <P name="formContainer" type="com.efounder.form.application.FormContainer" isRefType="true">form1</P>
+      </M>
+      <M id="GenerActionLog" clazz="com.efounder.action::GenerAction">
+        <P name="id" type="String">GenerActionLog</P>
+        <P name="label" type="String">GenerAction1477962938321</P>
+        <P name="scriptObject" type="Object" clazz="Object">
+          <k name="doAction_js" type="String"><![CDATA[var code = codeField.getObject();
+var Year = kjndField.getObject();
+var Month = monthField.getObject();
+
+var jzql = jzqlCheck.getObject();
+
+var PO = $wnd.JParamObject();
+
+if("1" == jzql){
+	PO.setValueByParamName("ZW_NMJZQL", "1");
+}else{
+	PO.setValueByParamName("ZW_NMJZQL", "0");
+}
+
+PO.setValueByParamName("REF_MDL", "ACPZModel");
+PO.setValueByParamName("Year", Year);
+PO.setValueByParamName("CHCode", code);
+PO.setValueByParamName("TYPE", "refreshBalance");
+PO.setValueByParamName("Model","ACPZModel");
+PO.setValueByParamName("UNIT_ID",PO.getEnv("UNIT_ID", ""));
+WebServiceLog.IOM("VoucherObject","getMsg",PO);]]></k>
+        </P>
+        <P name="height" type="int">30</P>
+        <P name="width" type="int">70</P>
+        <P name="visible" type="Boolean">true</P>
+        <P name="actionText" type="String">名称</P>
+        <P name="actionIcon" type="String"></P>
+        <P name="GNBH" type="String"></P>
+        <P name="isOperateLog" type="Boolean">false</P>
+        <P name="dataSetID" type="String"></P>
+        <P name="keyCode" type="uint">71</P>
+      </M>
+    </M>
+  </models>
+  <events/>
+</application>
